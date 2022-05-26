@@ -1,24 +1,17 @@
-import 'package:chat_app/my_app.dart';
+import 'package:chat_app/screens/screens.dart';
 import 'package:flutter/material.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-const apiKey = "b67pax5b2wdq";
-const userToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidHV0b3JpYWwtZmx1dHRlciJ9.S-MJpoSwDiqyXpUURgO5wVqJ4vKlIVFLSEyrFYCOE1c";
+void main() => runApp(MyApp());
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  //StreamChatClient
-  final client = StreamChatClient(apiKey, logLevel: Level.INFO);
-
-  // Current user
-  await client.connectUser(User(id: "tutorial-flutter"), userToken);
-
-  // Get channel
-  final channel = client.channel("messaging", id: "flutterdevs");
-
-  await channel.watch();
-
-  runApp(MyApp(client: client, channel: channel));
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Chat App',
+      home: HomeScreen(),
+    );
+  }
 }
