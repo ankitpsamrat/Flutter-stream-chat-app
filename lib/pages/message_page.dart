@@ -1,11 +1,11 @@
 import 'package:chat_app/app.dart';
 import 'package:chat_app/helpers.dart';
-import 'package:chat_app/models/message_data.dart';
 import 'package:chat_app/models/story_data.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/theme.dart';
 import 'package:chat_app/widgets/avatar.dart';
 import 'package:chat_app/widgets/display_error_message.dart';
+import 'package:chat_app/widgets/unread_indicator.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:chat_app/app.dart';
 import 'package:chat_app/helpers.dart';
 import 'package:chat_app/theme.dart';
@@ -10,6 +9,7 @@ import 'package:chat_app/widgets/icon_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -153,7 +153,7 @@ class _MessageList extends StatelessWidget {
               return const SizedBox.shrink();
             }
           } else {
-            return const SizedBox.shrink();
+            return  SizedBox.shrink();
           }
         },
         itemBuilder: (context, index) {
@@ -165,7 +165,7 @@ class _MessageList extends StatelessWidget {
               return _MessageTile(message: message);
             }
           } else {
-            return const SizedBox.shrink();
+            return  SizedBox.shrink();
           }
         },
       ),
