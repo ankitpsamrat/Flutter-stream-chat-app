@@ -1,8 +1,9 @@
-import 'package:chat_app/helpers.dart';
+import 'package:chat_app/app.dart';
 import 'package:chat_app/pages/call_page.dart';
 import 'package:chat_app/pages/contact_page.dart';
 import 'package:chat_app/pages/message_page.dart';
 import 'package:chat_app/pages/notification_page.dart';
+import 'package:chat_app/screens/profile_screen.dart';
 import 'package:chat_app/theme.dart';
 import 'package:chat_app/widgets/avatar.dart';
 import 'package:chat_app/widgets/glowing_action_button.dart';
@@ -67,8 +68,14 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 24),
-            child: Avatar.small(
-              url: Helpers.randomPictureUrl(),
+            child: Hero(
+              tag: 'hero-profile-picture',
+              child: Avatar.small(
+                url: context.currentUserImage,
+                onTap: () {
+                  Navigator.of(context).push(ProfileScreen.route);
+                },
+              ),
             ),
           ),
         ],
@@ -143,7 +150,15 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                   color: AppColors.secondary,
                   icon: CupertinoIcons.add,
                   onPressed: () {
-                    print('TODO on new message');
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => Dialog(
+                        child: AspectRatio(
+                          aspectRatio: 8 / 7,
+                          child: ContactsPage(),
+                        ),
+                      ),
+                    );
                   },
                 ),
               ),
