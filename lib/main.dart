@@ -1,27 +1,40 @@
 import 'package:chat_app/app.dart';
-import 'package:chat_app/screens/select_user_screen.dart';
+import 'package:chat_app/screens/splash_screen.dart';
 import 'package:chat_app/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   final client = StreamChatClient(streamKey);
-  runApp(MyApp(client: client));
+
+  runApp(
+    MyApp(
+      client: client,
+      appTheme: AppTheme(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
     required this.client,
+    required this.appTheme,
   }) : super(key: key);
 
   final StreamChatClient client;
+  final AppTheme appTheme;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: AppTheme.light(),
-      darkTheme: AppTheme.dark(),
+      theme: appTheme.light,
+      darkTheme: appTheme.dark,
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       title: 'Chat App',
       builder: (context, child) {
@@ -34,7 +47,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      home: SelectUserScreen(),
+      home: const SplashScreen(),
     );
   }
 }

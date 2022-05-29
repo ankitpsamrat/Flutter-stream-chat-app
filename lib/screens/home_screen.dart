@@ -12,19 +12,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  static Route get route => MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      );
   HomeScreen({Key? key}) : super(key: key);
 
   final ValueNotifier<int> pageIndex = ValueNotifier(0);
   final ValueNotifier<String> title = ValueNotifier('Messages');
 
-  final pages = [
+  final pages = const [
     MessagesPage(),
     NotificationsPage(),
     CallsPage(),
     ContactsPage(),
   ];
 
-  final pageTitles = [
+  final pageTitles = const [
     'Messages',
     'Notifications',
     'Calls',
@@ -40,20 +43,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: Theme.of(context).iconTheme,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
         title: ValueListenableBuilder(
           valueListenable: title,
-          builder: (BuildContext context, String value, _) {
-            return Text(
-              value,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            );
-          },
+          builder: (BuildContext context, String value, _) => Text(value),
         ),
         leadingWidth: 54,
         leading: Align(
@@ -61,13 +53,13 @@ class HomeScreen extends StatelessWidget {
           child: IconBackground(
             icon: Icons.search,
             onTap: () {
-              print('TODO search');
+              logger.i('TODO search');
             },
           ),
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 24),
+            padding: const EdgeInsets.only(right: 24.0),
             child: Hero(
               tag: 'hero-profile-picture',
               child: Avatar.small(
@@ -121,12 +113,12 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
     return Card(
       color: (brightness == Brightness.light) ? Colors.transparent : null,
       elevation: 0,
-      margin: EdgeInsets.all(0),
+      margin: const EdgeInsets.all(0),
       child: SafeArea(
         top: false,
         bottom: true,
         child: Padding(
-          padding: EdgeInsets.only(top: 16, left: 8, right: 8),
+          padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -145,14 +137,14 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                 onTap: handleItemSelected,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: GlowingActionButton(
                   color: AppColors.secondary,
                   icon: CupertinoIcons.add,
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) => Dialog(
+                      builder: (BuildContext context) => const Dialog(
                         child: AspectRatio(
                           aspectRatio: 8 / 7,
                           child: ContactsPage(),
@@ -214,23 +206,21 @@ class _NavigationBarItem extends StatelessWidget {
           children: [
             Icon(
               icon,
-              size: 20,
+              size: 22,
               color: isSelected ? AppColors.secondary : null,
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Text(
               lable,
               style: isSelected
-                  ? TextStyle(
+                  ? const TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
                       color: AppColors.secondary,
                     )
-                  : TextStyle(
-                      fontSize: 11,
-                    ),
+                  : const TextStyle(fontSize: 11),
             ),
           ],
         ),

@@ -18,6 +18,7 @@ class ContactsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UserListCore(
+      limit: 20,
       // pagination: const PaginationParams(
       //   limit: 20,
       // ),
