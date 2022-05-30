@@ -1,8 +1,12 @@
-import 'package:chat_app/app.dart';
-import 'package:chat_app/screens/select_user_screen.dart';
-import 'package:chat_app/widgets/avatar.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import '/app.dart';
+import '/screens/splash_screen.dart';
+import '/widgets/avatar.dart';
+import '/widgets/icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 
 class ProfileScreen extends StatelessWidget {
   static Route get route => MaterialPageRoute(
@@ -15,8 +19,17 @@ class ProfileScreen extends StatelessWidget {
     final user = context.currentUser;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        title: Text(
+          'Profile',
+        ),
+        leading: Center(
+          child: IconBackground(
+            icon: Icons.arrow_back_ios_new,
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
       ),
       body: Center(
         child: Column(
@@ -43,9 +56,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class _SignOutButton extends StatefulWidget {
-  const _SignOutButton({
-    Key? key,
-  }) : super(key: key);
+  const _SignOutButton({Key? key}) : super(key: key);
 
   @override
   __SignOutButtonState createState() => __SignOutButtonState();
@@ -61,22 +72,21 @@ class __SignOutButtonState extends State<_SignOutButton> {
 
     try {
       await StreamChatCore.of(context).client.disconnectUser();
+      await firebase.FirebaseAuth.instance.signOut();
 
-      Navigator.of(context).push(SelectUserScreen.route);
+      Navigator.of(context).pushReplacement(SplashScreen.route);
     } on Exception catch (e, st) {
       logger.e('Could not sign out', e, st);
-      setState(
-        () {
-          _loading = false;
-        },
-      );
+      setState(() {
+        _loading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return _loading
-        ? CircularProgressIndicator()
+        ? const CircularProgressIndicator()
         : TextButton(
             onPressed: _signOut,
             child: Text(

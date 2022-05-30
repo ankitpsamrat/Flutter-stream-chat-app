@@ -1,4 +1,4 @@
-import 'package:chat_app/theme.dart';
+import '/theme.dart';
 import 'package:flutter/material.dart';
 
 class IconBackground extends StatelessWidget {

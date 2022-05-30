@@ -1,13 +1,8 @@
-// import 'package:cloud_functions/cloud_functions.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
-// import 'package:flutter/material.dart';
-// import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
-
-// import '../app.dart';
-// import 'home_screen.dart';
-
-import 'package:chat_app/app.dart';
-import 'package:chat_app/screens/home_screen.dart';
+import '/app.dart';
+import '/screens/home_screen.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
@@ -52,7 +47,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
         final user = creds.user;
         if (user == null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('User is empty')),
+            SnackBar(
+              content: Text(
+                'User is empty',
+              ),
+            ),
           );
           return;
         }
@@ -80,17 +79,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           results.data,
         );
-
-        // Navigate to home screen
         await Navigator.of(context).pushReplacement(HomeScreen.route);
       } on firebase.FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message ?? 'Auth error')),
+          SnackBar(
+            content: Text(
+              e.message ?? 'Auth error',
+            ),
+          ),
         );
       } catch (e, st) {
         logger.e('Sign up error', e, st);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('An error occured')),
+          SnackBar(
+            content: Text(
+              'An error occured',
+            ),
+          ),
         );
       }
       setState(() {
@@ -139,35 +144,46 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CHATTER'),
+        title: Text(
+          'CHAT APP',
+        ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: (_loading)
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
           : SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 24, bottom: 24),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 24,
+                          bottom: 24,
+                        ),
                         child: Text(
                           'Register',
                           style: TextStyle(
-                              fontSize: 26, fontWeight: FontWeight.w800),
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _nameController,
                           validator: _nameInputValidator,
-                          decoration: const InputDecoration(hintText: 'name'),
+                          decoration: InputDecoration(
+                            hintText: 'Name',
+                          ),
                           keyboardType: TextInputType.name,
                           autofillHints: const [
                             AutofillHints.name,
@@ -176,31 +192,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _profilePictureController,
-                          decoration:
-                              const InputDecoration(hintText: 'picture URL'),
+                          decoration: InputDecoration(
+                            hintText: 'Picture URL',
+                          ),
                           keyboardType: TextInputType.url,
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _emailController,
                           validator: _emailInputValidator,
-                          decoration: const InputDecoration(hintText: 'email'),
+                          decoration: InputDecoration(
+                            hintText: 'Email',
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           autofillHints: const [AutofillHints.email],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _passwordController,
                           validator: _passwordInputValidator,
-                          decoration: const InputDecoration(
-                            hintText: 'password',
+                          decoration: InputDecoration(
+                            hintText: 'Password',
                           ),
                           obscureText: true,
                           enableSuggestions: false,
@@ -209,27 +228,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: _signUp,
-                          child: const Text('Sign up'),
+                          child: Text(
+                            'Sign up',
+                          ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 16.0,
+                        ),
                         child: Divider(),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Already have an account?',
-                              style: Theme.of(context).textTheme.subtitle2),
-                          const SizedBox(width: 8),
+                          Text(
+                            'Already have an account?',
+                            style: Theme.of(context).textTheme.subtitle2,
+                          ),
+                          SizedBox(width: 8),
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: const Text('Sign in'),
+                            child: Text(
+                              'Sign in',
+                            ),
                           ),
                         ],
                       ),

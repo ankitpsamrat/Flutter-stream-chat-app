@@ -1,6 +1,8 @@
-import 'package:chat_app/app.dart';
-import 'package:chat_app/screens/home_screen.dart';
-import 'package:chat_app/screens/sign_up_screen.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import '/app.dart';
+import '/screens/home_screen.dart';
+import '/screens/sign_up_screen.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
@@ -45,7 +47,11 @@ class _SignInScreenState extends State<SignInScreen> {
 
         if (user == null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('User is empty')),
+            SnackBar(
+              content: Text(
+                'User is empty',
+              ),
+            ),
           );
           return;
         }
@@ -60,17 +66,23 @@ class _SignInScreenState extends State<SignInScreen> {
           User(id: creds.user!.uid),
           results.data,
         );
-
-        // Navigate to home screen
         await Navigator.of(context).pushReplacement(HomeScreen.route);
       } on firebase.FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message ?? 'Auth error')),
+          SnackBar(
+            content: Text(
+              e.message ?? 'Auth error',
+            ),
+          ),
         );
       } catch (e, st) {
         logger.e('Sign in error, ', e, st);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('An error occured')),
+          SnackBar(
+            content: Text(
+              'An error occured',
+            ),
+          ),
         );
       }
       setState(() {
@@ -110,41 +122,49 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CHAT APP'),
+        title: Text(
+          'CHAT APP',
+        ),
       ),
       body: _loading
-          ? const Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
           : SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 24, bottom: 24),
+                      Padding(
+                        padding: EdgeInsets.only(top: 24, bottom: 24,),
                         child: Text(
                           'Welcome',
                           style: TextStyle(
-                              fontSize: 26, fontWeight: FontWeight.w800),
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _emailController,
                           validator: _emailInputValidator,
-                          decoration: const InputDecoration(hintText: 'Email'),
+                          decoration: InputDecoration(
+                            hintText: 'Email',
+                          ),
                           keyboardType: TextInputType.emailAddress,
                           autofillHints: const [AutofillHints.email],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _passwordController,
                           validator: _passwordInputValidator,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: 'Password',
                           ),
                           obscureText: true,
@@ -154,27 +174,33 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: _signIn,
-                          child: const Text(
+                          child: Text(
                             'Sign in',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                      const Divider(),
+                      Divider(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Already have an account?',
-                              style: Theme.of(context).textTheme.subtitle2),
-                          const SizedBox(width: 8),
+                          Text(
+                            'Already have an account?',
+                            style: Theme.of(context).textTheme.subtitle2,
+                          ),
+                          SizedBox(width: 8),
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).push(SignUpScreen.route);
                             },
-                            child: const Text('Create account'),
+                            child: Text(
+                              'Create account',
+                            ),
                           ),
                         ],
                       ),

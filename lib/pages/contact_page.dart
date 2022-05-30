@@ -1,16 +1,11 @@
-import 'package:chat_app/app.dart';
-import 'package:chat_app/screens/chat_screen.dart';
-// import 'package:chat_app/screens/chat_screen.dart';
-import 'package:chat_app/widgets/avatar.dart';
-import 'package:chat_app/widgets/display_error_message.dart';
-import 'package:flutter/material.dart';
-// import 'package:chatter/screens/chat_screen.dart';
-// import 'package:chatter/widgets/display_error_message.dart';
-// import 'package:chatter/widgets/widgets.dart';
-// import 'package:flutter/material.dart';
-import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
-// import 'package:chatter/app.dart';
+// ignore_for_file: use_build_context_synchronously, deprecated_member_use
 
+import '/app.dart';
+import '/screens/chat_screen.dart';
+import '/widgets/avatar.dart';
+import '/widgets/display_error_message.dart';
+import 'package:flutter/material.dart';
+import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class ContactsPage extends StatelessWidget {
   const ContactsPage({Key? key}) : super(key: key);
@@ -19,18 +14,23 @@ class ContactsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return UserListCore(
       limit: 20,
-      // pagination: const PaginationParams(
-      //   limit: 20,
-      // ),
       filter: Filter.notEqual('id', context.currentUser!.id),
       emptyBuilder: (context) {
-        return  Center(child: Text('There are no users'));
+        return Center(
+          child: Text(
+            'There are no users',
+          ),
+        );
       },
       loadingBuilder: (context) {
-        return  Center(child: CircularProgressIndicator());
+        return Center(
+          child: CircularProgressIndicator(),
+        );
       },
       errorBuilder: (context, error) {
-        return DisplayErrorMessage(error: error);
+        return DisplayErrorMessage(
+          error: error,
+        );
       },
       listBuilder: (context, items) {
         return Scrollbar(
@@ -38,7 +38,7 @@ class ContactsPage extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, index) {
               return items[index].when(
-                headerItem: (_) => const SizedBox.shrink(),
+                headerItem: (_) => SizedBox.shrink(),
                 userItem: (user) => _ContactTile(user: user),
               );
             },
@@ -59,12 +59,15 @@ class _ContactTile extends StatelessWidget {
 
   Future<void> createChannel(BuildContext context) async {
     final core = StreamChatCore.of(context);
-    final channel = core.client.channel('messaging', extraData: {
-      'members': [
-        core.currentUser!.id,
-        user.id,
-      ]
-    },);
+    final channel = core.client.channel(
+      'messaging',
+      extraData: {
+        'members': [
+          core.currentUser!.id,
+          user.id,
+        ]
+      },
+    );
     await channel.watch();
 
     Navigator.of(context).push(
@@ -79,8 +82,12 @@ class _ContactTile extends StatelessWidget {
         createChannel(context);
       },
       child: ListTile(
-        leading: Avatar.small(url: user.image),
-        title: Text(user.name),
+        leading: Avatar.small(
+          url: user.image,
+        ),
+        title: Text(
+          user.name,
+        ),
       ),
     );
   }

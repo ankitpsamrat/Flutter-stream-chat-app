@@ -1,11 +1,13 @@
-import 'package:chat_app/app.dart';
-import 'package:chat_app/helpers.dart';
-import 'package:chat_app/models/story_data.dart';
-import 'package:chat_app/screens/chat_screen.dart';
-import 'package:chat_app/theme.dart';
-import 'package:chat_app/widgets/avatar.dart';
-import 'package:chat_app/widgets/display_error_message.dart';
-import 'package:chat_app/widgets/unread_indicator.dart';
+// ignore_for_file: deprecated_member_use, library_private_types_in_public_api
+
+import '/app.dart';
+import '/helpers.dart';
+import '/models/story_data.dart';
+import '/screens/chat_screen.dart';
+import '/theme.dart';
+import '/widgets/avatar.dart';
+import '/widgets/display_error_message.dart';
+import '/widgets/unread_indicator.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
@@ -28,12 +30,15 @@ class _MessagesPageState extends State<MessagesPage> {
       filter: Filter.and(
         [
           Filter.equal('type', 'messaging'),
-          Filter.in_('members', [
-            StreamChatCore.of(context).currentUser!.id,
-          ])
+          Filter.in_(
+            'members',
+            [
+              StreamChatCore.of(context).currentUser!.id,
+            ],
+          )
         ],
       ),
-      emptyBuilder: (context) => const Center(
+      emptyBuilder: (context) => Center(
         child: Text(
           'So empty.\nGo and message someone.',
           textAlign: TextAlign.center,
@@ -45,7 +50,7 @@ class _MessagesPageState extends State<MessagesPage> {
       loadingBuilder: (
         context,
       ) =>
-          const Center(
+          Center(
         child: SizedBox(
           height: 100,
           width: 100,
@@ -55,7 +60,7 @@ class _MessagesPageState extends State<MessagesPage> {
       listBuilder: (context, channels) {
         return CustomScrollView(
           slivers: [
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: _Stories(),
             ),
             SliverList(
@@ -67,7 +72,7 @@ class _MessagesPageState extends State<MessagesPage> {
                 },
                 childCount: channels.length,
               ),
-            )
+            ),
           ],
         );
       },
@@ -87,11 +92,15 @@ class _MessageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(ChatScreen.routeWithChannel(channel));
+        Navigator.of(context).push(
+          ChatScreen.routeWithChannel(channel),
+        );
       },
       child: Container(
         height: 100,
-        margin: const EdgeInsets.symmetric(horizontal: 8),
+        margin: EdgeInsets.symmetric(
+          horizontal: 8,
+        ),
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
@@ -101,14 +110,14 @@ class _MessageTile extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: EdgeInsets.all(4.0),
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: Avatar.medium(
-                    url:
-                        Helpers.getChannelImage(channel, context.currentUser!)),
+                  url: Helpers.getChannelImage(channel, context.currentUser!),
+                ),
               ),
               Expanded(
                 child: Column(
@@ -116,11 +125,13 @@ class _MessageTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8.0,
+                      ),
                       child: Text(
                         Helpers.getChannelName(channel, context.currentUser!),
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           letterSpacing: 0.2,
                           wordSpacing: 1.5,
                           fontWeight: FontWeight.w900,
@@ -130,28 +141,26 @@ class _MessageTile extends StatelessWidget {
                     SizedBox(
                       height: 20,
                       child: _buildLastMessage(),
-                    )
+                    ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 20.0),
+                padding: EdgeInsets.only(
+                  right: 20.0,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const SizedBox(
-                      height: 4,
-                    ),
+                    SizedBox(height: 4),
                     _buildLastMessageAt(),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    SizedBox(height: 8),
                     Center(
                       child: UnreadIndicator(
                         channel: channel,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -175,11 +184,11 @@ class _MessageTile extends StatelessWidget {
               lastMessage.text ?? '',
               overflow: TextOverflow.ellipsis,
               style: (count > 0)
-                  ? const TextStyle(
+                  ? TextStyle(
                       fontSize: 12,
                       color: AppColors.secondary,
                     )
-                  : const TextStyle(
+                  : TextStyle(
                       fontSize: 12,
                       color: AppColors.textFaded,
                     ),
@@ -205,9 +214,7 @@ class _MessageTile extends StatelessWidget {
             startOfDay.millisecondsSinceEpoch) {
           stringDate = Jiffy(lastMessageAt.toLocal()).jm;
         } else if (lastMessageAt.millisecondsSinceEpoch >=
-            startOfDay
-                .subtract(const Duration(days: 1))
-                .millisecondsSinceEpoch) {
+            startOfDay.subtract(Duration(days: 1)).millisecondsSinceEpoch) {
           stringDate = 'YESTERDAY';
         } else if (startOfDay.difference(lastMessageAt).inDays < 7) {
           stringDate = Jiffy(lastMessageAt.toLocal()).EEEE;
@@ -216,7 +223,7 @@ class _MessageTile extends StatelessWidget {
         }
         return Text(
           stringDate,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 11,
             letterSpacing: -0.2,
             fontWeight: FontWeight.w600,
@@ -234,7 +241,9 @@ class _Stories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(
+        vertical: 8.0,
+      ),
       child: Card(
         elevation: 0,
         child: SizedBox(
@@ -242,8 +251,12 @@ class _Stories extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 16.0, top: 8, bottom: 16),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 16.0,
+                  top: 8,
+                  bottom: 16,
+                ),
                 child: Text(
                   'Stories',
                   style: TextStyle(
@@ -259,7 +272,7 @@ class _Stories extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     final faker = Faker();
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: SizedBox(
                         width: 60,
                         child: _StoryCard(
@@ -272,7 +285,7 @@ class _Stories extends StatelessWidget {
                     );
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -298,11 +311,13 @@ class _StoryCard extends StatelessWidget {
         Avatar.medium(url: storyData.url),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.only(top: 16.0),
+            padding: EdgeInsets.only(
+              top: 16.0,
+            ),
             child: Text(
               storyData.name,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 11,
                 letterSpacing: 0.3,
                 fontWeight: FontWeight.bold,

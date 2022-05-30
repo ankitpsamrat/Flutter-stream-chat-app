@@ -1,6 +1,8 @@
-import 'package:chat_app/app.dart';
-import 'package:chat_app/screens/splash_screen.dart';
-import 'package:chat_app/theme.dart';
+// ignore_for_file: deprecated_member_use
+
+import '/app.dart';
+import '/screens/splash_screen.dart';
+import '/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
       darkTheme: appTheme.dark,
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
-      title: 'Chat App',
+      title: 'CHAT APP',
       builder: (context, child) {
         return StreamChatCore(
           client: client,
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      home: const SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }

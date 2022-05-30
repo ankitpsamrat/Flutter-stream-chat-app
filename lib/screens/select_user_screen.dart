@@ -1,7 +1,9 @@
-import 'package:chat_app/app.dart';
-import 'package:chat_app/models/demo_users.dart';
-import 'package:chat_app/screens/home_screen.dart';
-import 'package:chat_app/widgets/avatar.dart';
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api
+
+import '/app.dart';
+import '/models/demo_users.dart';
+import '/screens/home_screen.dart';
+import '/widgets/avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
@@ -107,7 +109,9 @@ class SelectUserButton extends StatelessWidget {
         onTap: () => onPressed(user),
         child: Row(
           children: [
-            Avatar.large(url: user.image),
+            Avatar.large(
+              url: user.image,
+            ),
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(

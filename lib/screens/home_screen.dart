@@ -1,13 +1,13 @@
-import 'package:chat_app/app.dart';
-import 'package:chat_app/pages/call_page.dart';
-import 'package:chat_app/pages/contact_page.dart';
-import 'package:chat_app/pages/message_page.dart';
-import 'package:chat_app/pages/notification_page.dart';
-import 'package:chat_app/screens/profile_screen.dart';
-import 'package:chat_app/theme.dart';
-import 'package:chat_app/widgets/avatar.dart';
-import 'package:chat_app/widgets/glowing_action_button.dart';
-import 'package:chat_app/widgets/icon_button.dart';
+import '/app.dart';
+import '/pages/call_page.dart';
+import '/pages/contact_page.dart';
+import '/pages/message_page.dart';
+import '/pages/notification_page.dart';
+import '/screens/profile_screen.dart';
+import '/theme.dart';
+import '/widgets/avatar.dart';
+import '/widgets/glowing_action_button.dart';
+import '/widgets/icon_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +59,9 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 24.0),
+            padding: EdgeInsets.only(
+              right: 24.0,
+            ),
             child: Hero(
               tag: 'hero-profile-picture',
               child: Avatar.small(
@@ -113,12 +115,16 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
     return Card(
       color: (brightness == Brightness.light) ? Colors.transparent : null,
       elevation: 0,
-      margin: const EdgeInsets.all(0),
+      margin: EdgeInsets.all(0),
       child: SafeArea(
         top: false,
         bottom: true,
         child: Padding(
-          padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
+          padding: EdgeInsets.only(
+            top: 16,
+            left: 8,
+            right: 8,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -137,14 +143,16 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                 onTap: handleItemSelected,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
                 child: GlowingActionButton(
                   color: AppColors.secondary,
                   icon: CupertinoIcons.add,
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) => const Dialog(
+                      builder: (BuildContext context) => Dialog(
                         child: AspectRatio(
                           aspectRatio: 8 / 7,
                           child: ContactsPage(),
@@ -209,18 +217,20 @@ class _NavigationBarItem extends StatelessWidget {
               size: 22,
               color: isSelected ? AppColors.secondary : null,
             ),
-            const SizedBox(
+            SizedBox(
               height: 8,
             ),
             Text(
               lable,
               style: isSelected
-                  ? const TextStyle(
+                  ? TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
                       color: AppColors.secondary,
                     )
-                  : const TextStyle(fontSize: 11),
+                  : TextStyle(
+                      fontSize: 11,
+                    ),
             ),
           ],
         ),

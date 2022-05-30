@@ -6,7 +6,7 @@ class CallsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('callpage'),
+      child: Text('Call Page'),
     );
   }
 }
