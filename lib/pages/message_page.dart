@@ -38,7 +38,7 @@ class _MessagesPageState extends State<MessagesPage> {
           )
         ],
       ),
-      emptyBuilder: (context) => Center(
+      emptyBuilder: (context) => const Center(
         child: Text(
           'So empty.\nGo and message someone.',
           textAlign: TextAlign.center,
@@ -50,7 +50,7 @@ class _MessagesPageState extends State<MessagesPage> {
       loadingBuilder: (
         context,
       ) =>
-          Center(
+          const Center(
         child: SizedBox(
           height: 100,
           width: 100,
@@ -60,7 +60,7 @@ class _MessagesPageState extends State<MessagesPage> {
       listBuilder: (context, channels) {
         return CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: _Stories(),
             ),
             SliverList(
@@ -98,7 +98,7 @@ class _MessageTile extends StatelessWidget {
       },
       child: Container(
         height: 100,
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 8,
         ),
         decoration: BoxDecoration(
@@ -110,11 +110,11 @@ class _MessageTile extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(4.0),
           child: Row(
             children: [
               Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Avatar.medium(
                   url: Helpers.getChannelImage(channel, context.currentUser!),
                 ),
@@ -125,13 +125,13 @@ class _MessageTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         vertical: 8.0,
                       ),
                       child: Text(
                         Helpers.getChannelName(channel, context.currentUser!),
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                           letterSpacing: 0.2,
                           wordSpacing: 1.5,
                           fontWeight: FontWeight.w900,
@@ -146,16 +146,16 @@ class _MessageTile extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   right: 20.0,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     _buildLastMessageAt(),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Center(
                       child: UnreadIndicator(
                         channel: channel,
@@ -184,11 +184,11 @@ class _MessageTile extends StatelessWidget {
               lastMessage.text ?? '',
               overflow: TextOverflow.ellipsis,
               style: (count > 0)
-                  ? TextStyle(
+                  ? const TextStyle(
                       fontSize: 12,
                       color: AppColors.secondary,
                     )
-                  : TextStyle(
+                  : const TextStyle(
                       fontSize: 12,
                       color: AppColors.textFaded,
                     ),
@@ -214,7 +214,9 @@ class _MessageTile extends StatelessWidget {
             startOfDay.millisecondsSinceEpoch) {
           stringDate = Jiffy(lastMessageAt.toLocal()).jm;
         } else if (lastMessageAt.millisecondsSinceEpoch >=
-            startOfDay.subtract(Duration(days: 1)).millisecondsSinceEpoch) {
+            startOfDay
+                .subtract(const Duration(days: 1))
+                .millisecondsSinceEpoch) {
           stringDate = 'YESTERDAY';
         } else if (startOfDay.difference(lastMessageAt).inDays < 7) {
           stringDate = Jiffy(lastMessageAt.toLocal()).EEEE;
@@ -223,7 +225,7 @@ class _MessageTile extends StatelessWidget {
         }
         return Text(
           stringDate,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 11,
             letterSpacing: -0.2,
             fontWeight: FontWeight.w600,
@@ -241,7 +243,7 @@ class _Stories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 8.0,
       ),
       child: Card(
@@ -251,7 +253,7 @@ class _Stories extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(
                   left: 16.0,
                   top: 8,
@@ -272,7 +274,7 @@ class _Stories extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     final faker = Faker();
                     return Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
                         width: 60,
                         child: _StoryCard(
@@ -311,13 +313,13 @@ class _StoryCard extends StatelessWidget {
         Avatar.medium(url: storyData.url),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               top: 16.0,
             ),
             child: Text(
               storyData.name,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 11,
                 letterSpacing: 0.3,
                 fontWeight: FontWeight.bold,

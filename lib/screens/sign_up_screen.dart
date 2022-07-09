@@ -47,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         final user = creds.user;
         if (user == null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(
                 'User is empty',
               ),
@@ -91,7 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       } catch (e, st) {
         logger.e('Sign up error', e, st);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text(
               'An error occured',
             ),
@@ -144,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'CHAT APP',
         ),
         centerTitle: true,
@@ -152,18 +152,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
         elevation: 0,
       ),
       body: (_loading)
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(
                           top: 24,
                           bottom: 24,
@@ -177,11 +177,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _nameController,
                           validator: _nameInputValidator,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Name',
                           ),
                           keyboardType: TextInputType.name,
@@ -192,21 +192,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _profilePictureController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Picture URL',
                           ),
                           keyboardType: TextInputType.url,
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _emailController,
                           validator: _emailInputValidator,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Email',
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -214,11 +214,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _passwordController,
                           validator: _passwordInputValidator,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Password',
                           ),
                           obscureText: true,
@@ -228,15 +228,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: _signUp,
-                          child: Text(
+                          child: const Text(
                             'Sign up',
                           ),
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: 16.0,
                         ),
@@ -249,12 +249,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             'Already have an account?',
                             style: Theme.of(context).textTheme.subtitle2,
                           ),
-                          SizedBox(width: 8),
+                          const SizedBox(width: 8),
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text(
+                            child: const Text(
                               'Sign in',
                             ),
                           ),

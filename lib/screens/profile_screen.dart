@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
     final user = context.currentUser;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Profile',
         ),
         leading: Center(
@@ -41,13 +41,13 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 user?.name ?? 'No name',
               ),
             ),
-            Divider(),
-            _SignOutButton(),
+            const Divider(),
+            const _SignOutButton(),
           ],
         ),
       ),
@@ -89,7 +89,7 @@ class __SignOutButtonState extends State<_SignOutButton> {
         ? const CircularProgressIndicator()
         : TextButton(
             onPressed: _signOut,
-            child: Text(
+            child: const Text(
               'Sign out',
             ),
           );

@@ -35,6 +35,7 @@ class AppTheme {
   final lightBase = ThemeData.light();
 
   // Light theme and its settings.
+
   ThemeData get light => ThemeData(
         brightness: Brightness.light,
         colorScheme: lightBase.colorScheme.copyWith(
@@ -50,7 +51,7 @@ class AppTheme {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          titleTextStyle: TextStyle(
+          titleTextStyle: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 17,
             color: AppColors.textDark,
@@ -64,17 +65,18 @@ class AppTheme {
           ),
         ),
         cardColor: _LightColors.card,
-        primaryTextTheme: TextTheme(
+        primaryTextTheme: const TextTheme(
           headline6: TextStyle(
             color: AppColors.textDark,
           ),
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: AppColors.iconDark,
         ),
       );
 
   // Dark theme and its settings.
+
   ThemeData get dark => ThemeData(
         brightness: Brightness.dark,
         colorScheme: darkBase.colorScheme.copyWith(
@@ -89,7 +91,7 @@ class AppTheme {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          titleTextStyle: TextStyle(
+          titleTextStyle: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 17,
           ),
@@ -102,12 +104,12 @@ class AppTheme {
           ),
         ),
         cardColor: _DarkColors.card,
-        primaryTextTheme: TextTheme(
+        primaryTextTheme: const TextTheme(
           headline6: TextStyle(
             color: AppColors.textLigth,
           ),
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: AppColors.iconLight,
         ),
       );

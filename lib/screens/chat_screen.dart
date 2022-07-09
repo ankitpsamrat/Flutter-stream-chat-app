@@ -18,7 +18,7 @@ class ChatScreen extends StatefulWidget {
   static Route routeWithChannel(Channel channel) => MaterialPageRoute(
         builder: (context) => StreamChannel(
           channel: channel,
-          child: ChatScreen(),
+          child: const ChatScreen(),
         ),
       );
 
@@ -72,10 +72,10 @@ class _ChatScreenState extends State<ChatScreen> {
               },
             ),
           ),
-          title: _AppBarTitle(),
+          title: const _AppBarTitle(),
           actions: [
             Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 8.0,
               ),
               child: Center(
@@ -86,7 +86,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 right: 20,
               ),
               child: Center(
@@ -103,18 +103,18 @@ class _ChatScreenState extends State<ChatScreen> {
             Expanded(
               child: MessageListCore(
                 loadingBuilder: (context) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 },
-                emptyBuilder: (context) => SizedBox.shrink(),
+                emptyBuilder: (context) => const SizedBox.shrink(),
                 errorBuilder: (context, error) =>
                     DisplayErrorMessage(error: error),
                 messageListBuilder: (context, messages) =>
                     _MessageList(messages: messages),
               ),
             ),
-            _ActionBar(),
+            const _ActionBar(),
           ],
         ),
       ),
@@ -133,7 +133,7 @@ class _MessageList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: ListView.separated(
         itemCount: messages.length + 1,
         reverse: true,
@@ -142,9 +142,9 @@ class _MessageList extends StatelessWidget {
             return _DateLable(dateTime: messages[index].createdAt);
           }
           if (messages.length == 1) {
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           } else if (index >= messages.length - 1) {
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           } else if (index <= messages.length) {
             final message = messages[index];
             final nextMessage = messages[index + 1];
@@ -154,10 +154,10 @@ class _MessageList extends StatelessWidget {
                 dateTime: message.createdAt,
               );
             } else {
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             }
           } else {
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           }
         },
         itemBuilder: (context, index) {
@@ -169,7 +169,7 @@ class _MessageList extends StatelessWidget {
               return _MessageTile(message: message);
             }
           } else {
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           }
         },
       ),
@@ -189,7 +189,7 @@ class _MessageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 4,
       ),
       child: Align(
@@ -201,14 +201,14 @@ class _MessageTile extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(_borderRadius),
                   topRight: Radius.circular(_borderRadius),
                   bottomRight: Radius.circular(_borderRadius),
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 12.0,
                   vertical: 20,
                 ),
@@ -218,12 +218,12 @@ class _MessageTile extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 8.0,
               ),
               child: Text(
                 Jiffy(message.createdAt.toLocal()).jm,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.textFaded,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -249,7 +249,7 @@ class _MessageOwnTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 4.0,
       ),
       child: Align(
@@ -259,7 +259,7 @@ class _MessageOwnTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.secondary,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(_borderRadius),
@@ -268,25 +268,25 @@ class _MessageOwnTile extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 12.0,
                   vertical: 20,
                 ),
                 child: Text(
                   message.text ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: AppColors.textLigth,
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 8.0,
               ),
               child: Text(
                 Jiffy(message.createdAt.toLocal()).jm,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.textFaded,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -345,7 +345,7 @@ class __DateLableState extends State<_DateLable> {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: 32.0,
         ),
         child: Container(
@@ -354,13 +354,13 @@ class __DateLableState extends State<_DateLable> {
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               vertical: 4.0,
               horizontal: 12,
             ),
             child: Text(
               dayInfo,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textFaded,
@@ -386,7 +386,7 @@ class _AppBarTitle extends StatelessWidget {
         Avatar.small(
           url: Helpers.getChannelImage(channel, context.currentUser!),
         ),
-        SizedBox(
+        const SizedBox(
           width: 16,
         ),
         Expanded(
@@ -397,11 +397,11 @@ class _AppBarTitle extends StatelessWidget {
               Text(
                 Helpers.getChannelName(channel, context.currentUser!),
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                 ),
               ),
-              SizedBox(height: 2),
+              const SizedBox(height: 2),
               BetterStreamBuilder<List<Member>>(
                 stream: channel.state!.membersStream,
                 initialData: channel.state!.members,
@@ -411,7 +411,7 @@ class _AppBarTitle extends StatelessWidget {
                       case ConnectionStatus.connected:
                         return _buildConnectedTitleState(context, data);
                       case ConnectionStatus.connecting:
-                        return Text(
+                        return const Text(
                           'Connecting',
                           style: TextStyle(
                             fontSize: 10,
@@ -420,7 +420,7 @@ class _AppBarTitle extends StatelessWidget {
                           ),
                         );
                       case ConnectionStatus.disconnected:
-                        return Text(
+                        return const Text(
                           'Offline',
                           style: TextStyle(
                             fontSize: 10,
@@ -429,7 +429,7 @@ class _AppBarTitle extends StatelessWidget {
                           ),
                         );
                       default:
-                        return SizedBox.shrink();
+                        return const SizedBox.shrink();
                     }
                   },
                 ),
@@ -465,7 +465,7 @@ class _AppBarTitle extends StatelessWidget {
 
       if (otherMember != null) {
         if (otherMember.user?.online == true) {
-          alternativeWidget = Text(
+          alternativeWidget = const Text(
             'Online',
             style: TextStyle(
               fontSize: 10,
@@ -477,7 +477,7 @@ class _AppBarTitle extends StatelessWidget {
           alternativeWidget = Text(
             'Last online: '
             '${Jiffy(otherMember.user?.lastActive).fromNow()}',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.bold,
               color: Colors.red,
@@ -506,7 +506,7 @@ class TypingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final channelState = StreamChannel.of(context).channel.state!;
-    final altWidget = alternativeWidget ?? SizedBox.shrink();
+    final altWidget = alternativeWidget ?? const SizedBox.shrink();
 
     return BetterStreamBuilder<Iterable<User>>(
       initialData: channelState.typingEvents.keys,
@@ -517,11 +517,11 @@ class TypingIndicator extends StatelessWidget {
         return Align(
           alignment: Alignment.centerLeft,
           child: AnimatedSwitcher(
-            duration: Duration(
+            duration: const Duration(
               milliseconds: 300,
             ),
             child: data.isNotEmpty == true
-                ? Align(
+                ? const Align(
                     alignment: Alignment.centerLeft,
                     key: ValueKey(
                       'typing-text',
@@ -537,7 +537,7 @@ class TypingIndicator extends StatelessWidget {
                   )
                 : Align(
                     alignment: Alignment.centerLeft,
-                    key: ValueKey(
+                    key: const ValueKey(
                       'altwidget',
                     ),
                     child: altWidget,
@@ -585,7 +585,7 @@ class ConnectionStatusBuilder extends StatelessWidget {
         if (errorBuilder != null) {
           return errorBuilder!(context, error);
         }
-        return Offstage();
+        return const Offstage();
       },
       builder: statusBuilder,
     );
@@ -634,7 +634,7 @@ class __ActionBarState extends State<_ActionBar> {
                 ),
               ),
             ),
-            child: Padding(
+            child: const Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 16.0,
               ),
@@ -645,7 +645,7 @@ class __ActionBarState extends State<_ActionBar> {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 16.0,
               ),
               child: TextField(
@@ -653,10 +653,10 @@ class __ActionBarState extends State<_ActionBar> {
                 onChanged: (val) {
                   StreamChannel.of(context).channel.keyStroke();
                 },
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14,
                 ),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Type something...',
                   border: InputBorder.none,
                 ),
@@ -665,7 +665,7 @@ class __ActionBarState extends State<_ActionBar> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               left: 12,
               right: 24.0,
             ),

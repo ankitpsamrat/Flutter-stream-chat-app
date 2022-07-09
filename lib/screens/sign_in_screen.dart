@@ -47,7 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
         if (user == null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text(
                 'User is empty',
               ),
@@ -78,7 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
       } catch (e, st) {
         logger.e('Sign in error, ', e, st);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text(
               'An error occured',
             ),
@@ -122,23 +122,26 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'CHAT APP',
         ),
       ),
       body: _loading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 24, bottom: 24,),
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          top: 24,
+                          bottom: 24,
+                        ),
                         child: Text(
                           'Welcome',
                           style: TextStyle(
@@ -148,11 +151,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _emailController,
                           validator: _emailInputValidator,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Email',
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -160,11 +163,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           controller: _passwordController,
                           validator: _passwordInputValidator,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Password',
                           ),
                           obscureText: true,
@@ -174,10 +177,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: _signIn,
-                          child: Text(
+                          child: const Text(
                             'Sign in',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -185,7 +188,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                       ),
-                      Divider(),
+                      const Divider(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -193,12 +196,12 @@ class _SignInScreenState extends State<SignInScreen> {
                             'Already have an account?',
                             style: Theme.of(context).textTheme.subtitle2,
                           ),
-                          SizedBox(width: 8),
+                          const SizedBox(width: 8),
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).push(SignUpScreen.route);
                             },
-                            child: Text(
+                            child: const Text(
                               'Create account',
                             ),
                           ),

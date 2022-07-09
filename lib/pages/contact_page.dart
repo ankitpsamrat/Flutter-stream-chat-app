@@ -16,14 +16,14 @@ class ContactsPage extends StatelessWidget {
       limit: 20,
       filter: Filter.notEqual('id', context.currentUser!.id),
       emptyBuilder: (context) {
-        return Center(
+        return const Center(
           child: Text(
             'There are no users',
           ),
         );
       },
       loadingBuilder: (context) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },
@@ -38,7 +38,7 @@ class ContactsPage extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, index) {
               return items[index].when(
-                headerItem: (_) => SizedBox.shrink(),
+                headerItem: (_) => const SizedBox.shrink(),
                 userItem: (user) => _ContactTile(user: user),
               );
             },

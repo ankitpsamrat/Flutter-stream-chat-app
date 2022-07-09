@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               right: 24.0,
             ),
             child: Hero(
@@ -115,12 +115,12 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
     return Card(
       color: (brightness == Brightness.light) ? Colors.transparent : null,
       elevation: 0,
-      margin: EdgeInsets.all(0),
+      margin: const EdgeInsets.all(0),
       child: SafeArea(
         top: false,
         bottom: true,
         child: Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             top: 16,
             left: 8,
             right: 8,
@@ -143,7 +143,7 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                 onTap: handleItemSelected,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 8.0,
                 ),
                 child: GlowingActionButton(
@@ -152,7 +152,7 @@ class __BottomNavigationBarState extends State<_BottomNavigationBar> {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) => Dialog(
+                      builder: (BuildContext context) => const Dialog(
                         child: AspectRatio(
                           aspectRatio: 8 / 7,
                           child: ContactsPage(),
@@ -217,18 +217,18 @@ class _NavigationBarItem extends StatelessWidget {
               size: 22,
               color: isSelected ? AppColors.secondary : null,
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Text(
               lable,
               style: isSelected
-                  ? TextStyle(
+                  ? const TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
                       color: AppColors.secondary,
                     )
-                  : TextStyle(
+                  : const TextStyle(
                       fontSize: 11,
                     ),
             ),

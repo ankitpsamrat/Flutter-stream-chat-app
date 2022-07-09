@@ -21,7 +21,7 @@ class IconBackground extends StatelessWidget {
         splashColor: AppColors.secondary,
         onTap: onTap,
         child: Padding(
-          padding: EdgeInsets.all(6),
+          padding: const EdgeInsets.all(6),
           child: Icon(
             icon,
             size: 18,
@@ -57,7 +57,7 @@ class IconBorder extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(4),
+          padding: const EdgeInsets.all(4),
           child: Icon(
             icon,
             size: 16,

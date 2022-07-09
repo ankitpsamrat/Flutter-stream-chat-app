@@ -55,13 +55,13 @@ class _SelectUserScreenState extends State<SelectUserScreen> {
     return Scaffold(
       body: Center(
         child: (_loading)
-            ? CircularProgressIndicator()
+            ? const CircularProgressIndicator()
             : Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(32.0),
                       child: Text(
                         'Select a user',
@@ -104,7 +104,7 @@ class SelectUserButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: InkWell(
         onTap: () => onPressed(user),
         child: Row(
@@ -113,10 +113,10 @@ class SelectUserButton extends StatelessWidget {
               url: user.image,
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 user.name,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                 ),
               ),

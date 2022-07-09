@@ -60,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
         } else {
           // delay to show loading indicator
           await Future.delayed(
-            Duration(
+            const Duration(
               milliseconds: 700,
             ),
           );
@@ -79,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),

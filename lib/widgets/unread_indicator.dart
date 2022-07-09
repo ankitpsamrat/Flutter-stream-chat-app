@@ -19,13 +19,13 @@ class UnreadIndicator extends StatelessWidget {
         initialData: channel.state!.unreadCount,
         builder: (context, data) {
           if (data == 0) {
-            return SizedBox.shrink();
+            return const SizedBox.shrink();
           }
           return Material(
             borderRadius: BorderRadius.circular(8),
             color: AppColors.secondary,
             child: Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 5,
                 right: 5,
                 top: 2,
@@ -34,7 +34,7 @@ class UnreadIndicator extends StatelessWidget {
               child: Center(
                 child: Text(
                   '${data > 99 ? '99+' : data}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 11,
                     color: Colors.white,
                   ),
